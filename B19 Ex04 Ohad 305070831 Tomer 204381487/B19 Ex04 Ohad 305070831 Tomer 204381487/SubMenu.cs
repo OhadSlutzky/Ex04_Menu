@@ -92,12 +92,14 @@ namespace Ex04.Menus.Interfaces
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("Please choose from the given options ! ! !");
+                    throw new Exception("Please choose from the given options ! ! !");
                 }
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception.Message);
+                System.Threading.Thread.Sleep(2000);
+                PrintMenu();
             }
         }
 
