@@ -29,8 +29,10 @@ namespace Ex04.Menus.Test
             (((myMenu as MainMenu).Menu[2] as SubMenu).Menu[1] as Function).AddClickedListener(tester);
             (((myMenu as MainMenu).Menu[2] as SubMenu).Menu[2] as Function).AddClickedListener(tester);
 
-            (myMenu as Interfaces.MainMenu).PrintMenu();
-            
+            while(true)
+            {
+                (myMenu as Interfaces.MainMenu).PrintMenu();
+            }
         }
     }
 
@@ -38,7 +40,7 @@ namespace Ex04.Menus.Test
     {
         public void MethodInvoke(string i_ItemTitle)
         {
-            switch(i_ItemTitle)
+            switch (i_ItemTitle)
             {
                 case "Show Date":
                     ShowDate();
@@ -49,13 +51,23 @@ namespace Ex04.Menus.Test
                     break;
 
                 case "Count Digits":
-                    //CountDigits();
+                    CountDigits();
                     break;
 
                 case "Show Version":
-                    //ShowVersion();
+                    ShowVersion();
                     break;
-            }   
+                case "Exit":
+                    ExitSequence();
+                    break;
+            }
+        }
+
+        private void ExitSequence()
+        {
+            Console.WriteLine("BYE BYE!");
+            System.Threading.Thread.Sleep(1000);
+            System.Environment.Exit(0);
         }
 
         private void ShowDate()
@@ -66,6 +78,30 @@ namespace Ex04.Menus.Test
         private void ShowTime()
         {
             Console.WriteLine("{0:HH:mm:ss tt}", DateTime.Now);
+        }
+
+        private void CountDigits()
+        {
+            string userInput = null;
+            int numOfDigits = 0;
+
+            Console.WriteLine("Please enter a sentence:");
+            userInput = Console.ReadLine();
+
+            foreach(char c in userInput)
+            {
+                if(char.IsDigit(c))
+                {
+                    numOfDigits += 1;
+                }
+            }
+
+            Console.WriteLine("The sentence you entered contains {0} digits!", numOfDigits);
+        }
+
+        private void ShowVersion()
+        {
+            Console.WriteLine("Version: 19.2.4.32");
         }
     }
 }

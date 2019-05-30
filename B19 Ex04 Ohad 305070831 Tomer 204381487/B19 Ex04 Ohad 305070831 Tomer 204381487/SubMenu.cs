@@ -41,6 +41,7 @@ namespace Ex04.Menus.Interfaces
 
         public virtual void PrintMenu()
         {
+            Console.Clear();
             int i = 1;
 
             Console.WriteLine("-------{0}-------", m_Title);
@@ -67,7 +68,7 @@ namespace Ex04.Menus.Interfaces
 
             try
             {
-                int.Parse(userChoiceOfActionString);
+                userChoiceOfAction = int.Parse(userChoiceOfActionString);
 
                 if (InputInRange(userChoiceOfAction))
                 {
@@ -75,11 +76,13 @@ namespace Ex04.Menus.Interfaces
                     {
                         if(m_Menu[userChoiceOfAction].Title.Equals("Back"))
                         {
-                            Console.Clear();
                             m_PreviousMenu.PrintMenu();
                         }
 
                         (m_Menu[userChoiceOfAction] as Function).Invoke();
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadLine();
+                        PrintMenu();
                     }
                     else if (m_Menu[userChoiceOfAction] is SubMenu)
                     {

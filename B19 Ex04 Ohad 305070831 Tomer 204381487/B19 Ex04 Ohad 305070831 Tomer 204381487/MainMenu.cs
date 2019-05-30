@@ -14,6 +14,7 @@ namespace Ex04.Menus.Interfaces
 
         public override void PrintMenu()
         {
+            Console.Clear();
             int i = 1;
 
             Console.WriteLine("-------{0}-------", m_Title);
